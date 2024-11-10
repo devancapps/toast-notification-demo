@@ -53,3 +53,29 @@
             </button>
         </div>
     </div>
+
+    <!-- Toast container -->
+    <div class="toast-container"></div>
+
+    <script>
+        function showToast(message, type = 'success') {
+            const container = document.querySelector('.toast-container');
+            
+            // Create toast element
+            const toast = document.createElement('div');
+            toast.className = `toast mb-4 p-4 rounded-lg shadow-lg flex items-center ${getToastColor(type)}`;
+            
+            // Add icon based on type
+            toast.innerHTML = `
+                ${getToastIcon(type)}
+                <span class="ml-2">${message}</span>
+            `;
+            
+            // Add to container
+            container.appendChild(toast);
+            
+            // Remove toast after animation
+            setTimeout(() => {
+                toast.remove();
+            }, 3000);
+        }
